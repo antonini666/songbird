@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DotaService } from "../../services/api/dota-services";
+import { DotaService } from "../../services/api/dota-service";
 
 const dotaService = new DotaService();
 
