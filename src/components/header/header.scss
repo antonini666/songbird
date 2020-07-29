@@ -23,6 +23,7 @@
 
   &__menu {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
     list-style: none;
@@ -31,13 +32,26 @@
   }
 
   &__item {
-    flex: 1;
+    width: calc(100% / 6);
     text-align: center;
     padding: 10px 0;
     background-color: #f44336;
+    text-transform: capitalize;
+
+    @media (max-width: 768px) {
+      width: calc(100% / 3);
+    }
+
+    @media (max-width: 425px) {
+      width: calc(100% / 2);
+    }
+
+    @media (max-width: 320px) {
+      width: 100%;
+    }
 
     &--active {
-      background-color: lighten($color: #f44336, $amount: 10)
+      background-color: lighten($color: #f44336, $amount: 10);
     }
   }
 }

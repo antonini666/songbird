@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { heroClassesLoaded } from "../../services/redux/hero-classes/actions";
+import { DotaService } from "../../services/api/dota-service";
 import Logo from "../../assets/image/logo.png";
-import "./header.scss"
+import "./header.scss";
+
+const dotaService = new DotaService();
 
 const Header = (props) => {
+  const dispatch = useDispatch();
+  const state = useSelector(({ classes }) => {
+    return classes.heroClasses;
+  });
+
+  console.log(state);
+
+  useEffect(() => {
+    dotaService.getHeroClasses().then((data) => {
+      dispatch(heroClassesLoaded(data));
+    });
+  }, []);
+
   return (
     <header className="header">
       <div className="header__top">
@@ -14,12 +32,11 @@ const Header = (props) => {
       </div>
       <nav className="header__nav">
         <ul className="header__menu">
-          <li className="header__item header__item--active">1</li>
-          <li className="header__item">2</li>
-          <li className="header__item">3</li>
-          <li className="header__item">4</li>
-          <li className="header__item">5</li>
-          <li className="header__item">6</li>
+          {state.map((item, id) => (
+            <li className="header__item" key={id}>
+              {item}
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
