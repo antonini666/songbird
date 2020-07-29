@@ -1,27 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import { heroClassesLoaded } from "../../services/redux/hero-classes/actions";
-import { DotaService } from "../../services/api/dota-service";
+import React from "react";
 import Logo from "../../assets/image/logo.png";
+import { HeaderNav } from "./header-nav";
 import "./header.scss";
 
-const dotaService = new DotaService();
-
-const Header = (props) => {
-  const dispatch = useDispatch();
-  const state = useSelector(({ classes }) => {
-    return classes.heroClasses;
-  });
-
-  console.log(state);
-
-  useEffect(() => {
-    dotaService.getHeroClasses().then((data) => {
-      dispatch(heroClassesLoaded(data));
-    });
-  }, []);
-
+export const Header = ({ loading, classes, step }) => {
   return (
     <header className="header">
       <div className="header__top">
@@ -32,15 +14,9 @@ const Header = (props) => {
       </div>
       <nav className="header__nav">
         <ul className="header__menu">
-          {state.map((item, id) => (
-            <li className="header__item" key={id}>
-              {item}
-            </li>
-          ))}
+          <HeaderNav classes={classes} step={step} loading={loading} />
         </ul>
       </nav>
     </header>
   );
 };
-
-export { Header };
