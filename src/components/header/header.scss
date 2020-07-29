@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  flex-direction: column;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  &__logo {
+    img {
+      width: 160px;
+      height: 100%;
+    }
+  }
+
+  &__score {
+    font-size: 24px;
+  }
+
+  &__menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    list-style: none;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__item {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #f44336;
+
+    &--active {
+      background-color: lighten($color: #f44336, $amount: 10)
+    }
+  }
+}
