@@ -2,6 +2,14 @@ import React from "react";
 
 import "./next-button.scss";
 
-export const NextButton = () => {
-  return <button className="btn-next">Next level</button>;
+export const NextButton = ({ disabled, onHandler }) => {
+  return (
+    <button
+      onClick={onHandler.bind(this)}
+      className="btn-next"
+      disabled={!disabled}
+    >
+      Next level
+    </button>
+  );
 };

@@ -30,3 +30,44 @@ body {
     }
   }
 }
+
+.result {
+  background-color: #333;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 15px;
+
+  &__title {
+    font-size: 60px;
+    text-align: center;
+    padding-top: 80px;
+  }
+
+  &__description {
+    text-align: center;
+    padding: 10px 0 30px;
+    border-bottom: 1px solid lighten($color: #333, $amount: 5);
+  }
+
+  &__btn {
+    display: block;
+    margin: 50px 0 20px;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ef4136;
+    font-size: 20px;
+    color: #fff;
+
+    &:hover {
+      background-color: lighten($color: #ef4136, $amount: 5);
+    }
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+  }
+}

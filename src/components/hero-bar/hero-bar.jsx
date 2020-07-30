@@ -20,6 +20,10 @@ export const HeroBar = () => {
 
   const { rightAnswer, hero, step, loading, selectedRightAnswer } = state;
 
+  const onPause = () => {
+    audioRef.current.audio.current.pause();
+  };
+
   if (loading) {
     return (
       <div className="hero-bar loading">
@@ -27,6 +31,8 @@ export const HeroBar = () => {
       </div>
     );
   }
+
+  console.log(selectedRightAnswer);
 
   return (
     <div className="hero-bar">
@@ -40,12 +46,18 @@ export const HeroBar = () => {
           alt="hero"
         />
       </div>
-      <div className="hero-bar__audio">
-        <AudioPlayer
-          src={hero[step][rightAnswer].audio}
-          showJumpControls={false}
-          ref={audioRef}
-        />
+      <div className="hero-bar__container">
+        <div className="hero-bar__name">
+          {selectedRightAnswer ? hero[step][rightAnswer - 1].name : "******"}
+        </div>
+        <div className="hero-bar__audio">
+          <AudioPlayer
+            src={hero[step][rightAnswer - 1].audio}
+            showJumpControls={false}
+            onCanPlay={onPause}
+            ref={audioRef}
+          />
+        </div>
       </div>
     </div>
   );

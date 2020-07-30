@@ -1,6 +1,8 @@
 export const SET_RANDOM_HERO_ANSWER = "SET_RANDOM_HERO_ANSWER";
 export const SET_RIGHT_ANSWER = "SET_RIGHT_ANSWER";
 export const DECREMENT_MAX_POINTS = "DECREMENT_MAX_POINTS";
+export const INCREMENT_SCORE = "INCREMENT_SCORE";
+export const NEXT_STEP = "NEXT_STEP";
 
 export const setRandomHeroAnswer = () => ({
   type: SET_RANDOM_HERO_ANSWER,
@@ -14,4 +16,12 @@ export const setRightAnswer = (id) => ({
 
 export const decrementMaxPoints = () => ({
   type: DECREMENT_MAX_POINTS,
+});
+
+export const incrementScore = () => ({
+  type: INCREMENT_SCORE,
+});
+
+export const nextStep = () => ({
+  type: NEXT_STEP,
 });

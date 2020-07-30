@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { setRightAnswer } from "../../services/redux/score/actions";
+import { DotaService } from "../../services/api/dota-service";
+import { Spinner } from "../spinner";
 import {
   heroesLoaded,
   setCurrentHero,
 } from "../../services/redux/heroes/actions";
-import { decrementMaxPoints } from "../../services/redux/score/actions";
-
-import { setRightAnswer } from "../../services/redux/score/actions";
-
-import { DotaService } from "../../services/api/dota-service";
+import {
+  decrementMaxPoints,
+  incrementScore,
+} from "../../services/redux/score/actions";
 import "./hero-list.scss";
-import { Spinner } from "../spinner";
 
 const dotaService = new DotaService();
 
@@ -24,8 +25,16 @@ export const HeroList = () => {
       loading: heroes.loading,
       step: classes.step,
       selectedRightAnswer: score.selectedRightAnswer,
+      rightAnswer: score.rightAnswer,
     };
   });
+
+  const onClickedAnswer = (e) => {
+    return (
+      !e.classList.contains("hero-list__item--error") &&
+      !e.classList.contains("hero-list__item--success")
+    );
+  };
 
   useEffect(() => {
     dotaService
@@ -33,15 +42,21 @@ export const HeroList = () => {
       .then((heroList) => dispatch(heroesLoaded(Object.values(heroList))));
   }, [dispatch]);
 
-  const { heroes, step, loading, selectedRightAnswer } = state;
+  const { heroes, step, loading, selectedRightAnswer, rightAnswer } = state;
 
-  const onHandler = (hero, id) => {
+  const onHandler = (e, hero, id) => {
+    dispatch(setCurrentHero(hero));
     if (!selectedRightAnswer) {
-      dispatch(setCurrentHero(hero));
-      dispatch(setRightAnswer(id));
-      dispatch(decrementMaxPoints());
-    } else {
-      dispatch(setCurrentHero(hero));
+      if (onClickedAnswer(e)) {
+        if (id === rightAnswer) {
+          e.classList.add("hero-list__item--success");
+          dispatch(incrementScore());
+          dispatch(setRightAnswer(true));
+        } else {
+          e.classList.add("hero-list__item--error");
+          dispatch(decrementMaxPoints());
+        }
+      }
     }
   };
 
@@ -60,7 +75,7 @@ export const HeroList = () => {
           <li
             className="hero-list__item"
             key={hero.id}
-            onClick={onHandler.bind(this, hero, hero.id)}
+            onClick={(e) => onHandler(e.target, hero, hero.id)}
           >
             <span className="badge" />
             {hero.name}

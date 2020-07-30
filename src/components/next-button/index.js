@@ -1,1 +1,1 @@
-export { NextButton } from "./next-button";
+export { NextButtonContainer } from "./next-button.container";

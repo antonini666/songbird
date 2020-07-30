@@ -1,4 +1,4 @@
-import { HERO_CLASSES_LOADED } from "./actions";
+import { HERO_CLASSES_LOADED, INCREMENT_STEP } from "./actions";
 
 const initialState = {
   heroClasses: [],
@@ -14,7 +14,11 @@ export const heroClassesReducer = (state = initialState, action) => {
         heroClasses: action.payload,
         loading: false,
       };
-
+    case INCREMENT_STEP:
+      return {
+        ...state,
+        step: state.step + 1,
+      };
     default: {
       return state;
     }

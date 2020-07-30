@@ -12,8 +12,6 @@ export const HeroInfo = () => {
     audioRef.current.audio.current.pause();
   };
 
-  console.log(state);
-
   return (
     <div className="hero-info">
       {!state ? (
