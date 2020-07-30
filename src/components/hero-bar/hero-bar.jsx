@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import QuestionMark from "../../assets/image/question-mark.png";
 
+import "./hero-audio.scss";
 import "./hero-bar.scss";
 
 export const HeroBar = () => {

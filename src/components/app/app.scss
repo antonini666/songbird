@@ -22,3 +22,27 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.btn-next {
+  display: block;
+  margin-top: 20px;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ef4136;
+  font-size: 20px;
+  color: #fff;
+
+  &:hover {
+    background-color: lighten($color: #ef4136, $amount: 5);
+  }
+
+  &:disabled {
+    background-color: #333;
+    border: 1px solid lighten($color: #333, $amount: 5);
+    cursor: default;
+    color: darken($color: #fff, $amount: 35);
+  }
+}

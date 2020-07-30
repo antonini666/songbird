@@ -1,0 +1,52 @@
+.hero-info {
+  width: 50%;
+  margin-top: 20px;
+  margin-left: 10px;
+  border-radius: 10px;
+  height: max-content;
+  padding: 15px;
+  overflow: hidden;
+  background-color: #333;
+  border: 1px solid lighten($color: #333, $amount: 5);
+
+  .instruction {
+    span {
+      display: block;
+      font-size: 16px;
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+  }
+
+  &__image {
+    width: 180px;
+    margin-right: 10px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__sidebar {
+    flex: 1;
+  }
+
+  &__name {
+    font-size: 20px;
+    padding: 5px 0;
+    border-bottom: 1px solid lighten($color: #333, $amount: 5);
+  }
+
+  &__surname {
+    padding: 5px 0;
+    border-bottom: 1px solid lighten($color: #333, $amount: 5);
+  }
+
+  &__description {
+    margin-top: 10px;
+    font-weight: 300;
+  }
+}
