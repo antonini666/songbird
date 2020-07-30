@@ -8,9 +8,11 @@ export const HeroInfo = () => {
   const state = useSelector(({ heroes }) => heroes.currentHero);
   const audioRef = useRef(null);
 
-  const onButtonClick = () => {
+  const onPause = () => {
     audioRef.current.audio.current.pause();
   };
+
+  console.log(state);
 
   return (
     <div className="hero-info">
@@ -33,7 +35,7 @@ export const HeroInfo = () => {
                   ref={audioRef}
                   src={state.audio}
                   showJumpControls={false}
-                  onCanPlay={onButtonClick}
+                  onCanPlay={onPause}
                 />
               </div>
             </div>

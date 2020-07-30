@@ -1,21 +1,32 @@
-import { HEROES_LOADED } from "./actions";
+import {
+  SET_RANDOM_HERO_ANSWER,
+  SET_RIGHT_ANSWER,
+  DECREMENT_MAX_POINTS,
+} from "./actions";
 
 const initialState = {
-  heroes: [],
-  loading: true,
-  currentHero: null,
-  rightAnswer: Math.floor(0 + Math.random() * (5 + 1 - 0)),
+  rightAnswer: Math.floor(1 + Math.random() * (5 + 1 - 1)),
   score: 0,
-  maxAnswerCount: 5,
+  selectedRightAnswer: false,
+  maxPints: 5,
 };
 
-export const heroesReducer = (state = initialState, action) => {
+export const scoreReducer = (state = initialState, action) => {
   switch (action.type) {
-    case HEROES_LOADED:
+    case SET_RANDOM_HERO_ANSWER:
       return {
         ...state,
-        heroes: action.payload,
-        loading: false,
+        rightAnswer: action.payload,
+      };
+    case SET_RIGHT_ANSWER:
+      return {
+        ...state,
+        selectedRightAnswer: action.payload === state.rightAnswer,
+      };
+    case DECREMENT_MAX_POINTS:
+      return {
+        ...state,
+        maxPints: state.maxPints - 1,
       };
     default:
       return state;

@@ -3,14 +3,14 @@ import Logo from "../../assets/image/logo.png";
 import { HeaderNav } from "./header-nav";
 import "./header.scss";
 
-export const Header = ({ loading, classes, step }) => {
+export const Header = ({ loading, classes, step, score }) => {
   return (
     <header className="header">
       <div className="header__top">
         <div className="header__logo">
           <img src={Logo} alt="logo" />
         </div>
-        <div className="header__score">Score:</div>
+        <div className="header__score">Score: {score}</div>
       </div>
       <nav className="header__nav">
         <ul className="header__menu">

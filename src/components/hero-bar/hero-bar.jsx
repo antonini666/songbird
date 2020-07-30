@@ -2,24 +2,47 @@ import React, { useRef } from "react";
 import AudioPlayer from "react-h5-audio-player";
 import QuestionMark from "../../assets/image/question-mark.png";
 
+import { Spinner } from "../spinner";
 import "./hero-audio.scss";
 import "./hero-bar.scss";
+import { useSelector } from "react-redux";
 
 export const HeroBar = () => {
   const audioRef = useRef(null);
 
-  // const onButtonClick = () => {
-  //   audio.current.audio.current.pause();
-  // };
+  const state = useSelector(({ score, heroes, classes }) => ({
+    rightAnswer: score.rightAnswer,
+    hero: heroes.heroes,
+    selectedRightAnswer: score.selectedRightAnswer,
+    step: classes.step,
+    loading: heroes.loading,
+  }));
+
+  const { rightAnswer, hero, step, loading, selectedRightAnswer } = state;
+
+  if (loading) {
+    return (
+      <div className="hero-bar loading">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div className="hero-bar">
       <div className="hero-bar__image">
-        <img src={QuestionMark} alt="hero" />
+        <img
+          src={
+            !selectedRightAnswer
+              ? QuestionMark
+              : hero[step][rightAnswer - 1].image
+          }
+          alt="hero"
+        />
       </div>
       <div className="hero-bar__audio">
         <AudioPlayer
-          src="https://gamepedia.cursecdn.com/dota2_gamepedia/a/a6/Vo_antimage_anti_kill_12.mp3"
+          src={hero[step][rightAnswer].audio}
           showJumpControls={false}
           ref={audioRef}
         />

@@ -5,6 +5,9 @@ import {
   heroesLoaded,
   setCurrentHero,
 } from "../../services/redux/heroes/actions";
+import { decrementMaxPoints } from "../../services/redux/score/actions";
+
+import { setRightAnswer } from "../../services/redux/score/actions";
 
 import { DotaService } from "../../services/api/dota-service";
 import "./hero-list.scss";
@@ -15,11 +18,12 @@ const dotaService = new DotaService();
 export const HeroList = () => {
   const dispatch = useDispatch();
 
-  const state = useSelector(({ heroes, classes }) => {
+  const state = useSelector(({ heroes, classes, score }) => {
     return {
       heroes: heroes.heroes,
       loading: heroes.loading,
       step: classes.step,
+      selectedRightAnswer: score.selectedRightAnswer,
     };
   });
 
@@ -29,7 +33,17 @@ export const HeroList = () => {
       .then((heroList) => dispatch(heroesLoaded(Object.values(heroList))));
   }, [dispatch]);
 
-  const { heroes, step, loading } = state;
+  const { heroes, step, loading, selectedRightAnswer } = state;
+
+  const onHandler = (hero, id) => {
+    if (!selectedRightAnswer) {
+      dispatch(setCurrentHero(hero));
+      dispatch(setRightAnswer(id));
+      dispatch(decrementMaxPoints());
+    } else {
+      dispatch(setCurrentHero(hero));
+    }
+  };
 
   if (loading) {
     return (
@@ -46,7 +60,7 @@ export const HeroList = () => {
           <li
             className="hero-list__item"
             key={hero.id}
-            onClick={dispatch.bind(this, setCurrentHero(hero))}
+            onClick={onHandler.bind(this, hero, hero.id)}
           >
             <span className="badge" />
             {hero.name}

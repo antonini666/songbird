@@ -8,11 +8,12 @@ const dotaService = new DotaService();
 
 export const HeaderContainer = () => {
   const dispatch = useDispatch();
-  const state = useSelector(({ classes }) => {
+  const state = useSelector(({ classes, score }) => {
     return {
       classes: classes.heroClasses,
       step: classes.step,
       loading: classes.loading,
+      score: score.score,
     };
   });
 
@@ -23,6 +24,11 @@ export const HeaderContainer = () => {
   }, [dispatch]);
 
   return (
-    <Header classes={state.classes} step={state.step} loading={state.loading} />
+    <Header
+      classes={state.classes}
+      step={state.step}
+      loading={state.loading}
+      score={state.score}
+    />
   );
 };

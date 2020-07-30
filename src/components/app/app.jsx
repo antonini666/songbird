@@ -5,6 +5,7 @@ import "./app.scss";
 import { HeroBar } from "../hero-bar";
 import { HeroList } from "../hero-list";
 import { HeroInfo } from "../hero-info";
+import { NextButton } from "../next-button";
 
 const App = () => {
   return (
@@ -15,7 +16,7 @@ const App = () => {
         <HeroList />
         <HeroInfo />
       </div>
-      <button className="btn-next">Next level</button>
+      <NextButton />
     </div>
   );
 };
