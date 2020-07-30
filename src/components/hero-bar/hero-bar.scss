@@ -1,8 +1,9 @@
 $rhap_theme-color: #ef4136 !default;
-$rhap_background-color: #fff !default;
 $rhap_bar-color: #dddddd !default;
-$rhap_time-color: #ef4136 !default;
-$rhap_font-family: inherit !default;
+
+*:focus {
+  outline: none;
+}
 
 .hero-bar {
   display: flex;
@@ -12,15 +13,29 @@ $rhap_font-family: inherit !default;
   border-radius: 10px;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__image {
     display: flex;
     border-radius: 5px;
     overflow: hidden;
+
+    img {
+      max-width: 100%;
+    }
   }
 
   &__audio {
     display: flex;
     flex: 1;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      margin-top: 20px;
+    }
   }
 }
 
@@ -29,7 +44,6 @@ $rhap_font-family: inherit !default;
   display: flex;
   flex-direction: column;
   line-height: 1;
-  font-family: $rhap_font-family;
   width: 100%;
   padding: 10px 15px;
   &:focus:not(:focus-visible) {
@@ -106,7 +120,7 @@ $rhap_font-family: inherit !default;
 }
 
 .rhap_time {
-  color: $rhap_time-color;
+  color: $rhap_theme-color;
   font-size: 16px;
   user-select: none;
   -webkit-user-select: none;

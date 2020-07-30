@@ -40,7 +40,7 @@
     text-align: center;
     padding: 10px 0;
     max-height: 40px;
-    background-color: #f44336;
+    background-color: #ef4136;
     text-transform: capitalize;
 
     @media (max-width: 768px) {
@@ -56,7 +56,7 @@
     }
 
     &--active {
-      background-color: lighten($color: #f44336, $amount: 10);
+      background-color: lighten($color: #ef4136, $amount: 10);
     }
 
     &--full {
