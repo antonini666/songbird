@@ -21,6 +21,14 @@ body {
 .flex {
   display: flex;
   flex-direction: row;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    & > div {
+      width: 100%;
+    }
+  }
 }
 
 .btn-next {

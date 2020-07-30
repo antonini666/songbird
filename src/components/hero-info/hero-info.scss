@@ -9,6 +9,10 @@
   background-color: #333;
   border: 1px solid lighten($color: #333, $amount: 5);
 
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+
   .instruction {
     span {
       display: block;
@@ -19,6 +23,10 @@
   &__top {
     display: flex;
     align-items: center;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
   }
 
   &__image {
@@ -32,6 +40,7 @@
 
   &__sidebar {
     flex: 1;
+    width: 100%;
   }
 
   &__name {

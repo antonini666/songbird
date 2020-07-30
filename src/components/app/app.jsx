@@ -15,9 +15,7 @@ const App = () => {
         <HeroList />
         <HeroInfo />
       </div>
-      <button className="btn-next" disabled>
-        Next level
-      </button>
+      <button className="btn-next">Next level</button>
     </div>
   );
 };

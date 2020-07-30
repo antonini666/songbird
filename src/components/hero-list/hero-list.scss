@@ -8,6 +8,13 @@
   background-color: #333;
   border: 1px solid lighten($color: #333, $amount: 5);
 
+  &.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+  }
+
   &__item {
     padding: 15px;
     border-bottom: 1px solid lighten($color: #333, $amount: 5);

@@ -17,34 +17,9 @@ class DotaService {
     return Object.keys(res);
   };
 
-  getStrengthHeroes = async () => {
+  getAllHero = async () => {
     const res = await this.getResource();
-    return res.strength;
-  };
-
-  getIntelligenceHeroes = async () => {
-    const res = await this.getResource();
-    return res.intelligence;
-  };
-
-  getAgilityHeroes = async () => {
-    const res = await this.getResource();
-    return res.agility;
-  };
-
-  getRangeHeroes = async () => {
-    const res = await this.getResource();
-    return res.range;
-  };
-
-  getMeleeHeroes = async () => {
-    const res = await this.getResource();
-    return res.melee;
-  };
-
-  getRandomHeroes = async () => {
-    const res = await this.getResource();
-    return res.random;
+    return res;
   };
 }
 

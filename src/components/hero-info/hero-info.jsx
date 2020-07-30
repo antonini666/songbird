@@ -1,37 +1,46 @@
-import React from "react";
+import React, { useRef } from "react";
 import AudioPlayer from "react-h5-audio-player";
-import QuestionMark from "../../assets/image/question-mark.png";
+import { useSelector } from "react-redux";
 
 import "./hero-info.scss";
 
 export const HeroInfo = () => {
+  const state = useSelector(({ heroes }) => heroes.currentHero);
+  const audioRef = useRef(null);
+
+  const onButtonClick = () => {
+    audioRef.current.audio.current.pause();
+  };
+
   return (
     <div className="hero-info">
-      {/* <p className="instruction">
-        <span>Listen to the player.</span>
-        <span>Select a hero from the list</span>
-      </p> */}
-      <div className="hero-info__top">
-        <div className="hero-info__image">
-          <img src={QuestionMark} alt="hero" />
-        </div>
-        <div className="hero-info__sidebar">
-          <div className="hero-info__name">1241</div>
-          <div className="hero-info__surname">1231</div>
-          <div className="hero-info__audio">
-            <AudioPlayer
-              src="https://gamepedia.cursecdn.com/dota2_gamepedia/a/a6/Vo_antimage_anti_kill_12.mp3"
-              showJumpControls={false}
-            />
+      {!state ? (
+        <p className="instruction">
+          <span>Listen to the player.</span>
+          <span>Select a hero from the list</span>
+        </p>
+      ) : (
+        <React.Fragment>
+          <div className="hero-info__top">
+            <div className="hero-info__image">
+              <img src={state.image} alt="hero" />
+            </div>
+            <div className="hero-info__sidebar">
+              <div className="hero-info__name">{state.name}</div>
+              <div className="hero-info__surname">{state.fullName}</div>
+              <div className="hero-info__audio">
+                <AudioPlayer
+                  ref={audioRef}
+                  src={state.audio}
+                  showJumpControls={false}
+                  onCanPlay={onButtonClick}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="hero-info__description">
-        Для ласточек характерно негромкое щебетание. Песни ласточек не смолкают
-        на протяжении всего лета. Исследователи различают у птиц до 6 щебечущих
-        звуков: «вит», «ви-вит», «чивит», «чиривит» и т.п. Ласточки любят петь
-        дуэтом.
-      </div>
+          <div className="hero-info__description">{state.description}</div>
+        </React.Fragment>
+      )}
     </div>
   );
 };
