@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import "./hero-info.scss";
 
 export const HeroInfo = () => {
-  const state = useSelector(({ heroes }) => heroes.currentHero);
+  const currentHero = useSelector(({ score }) => score.currentHero);
   const audioRef = useRef(null);
 
   const onPause = () => {
@@ -14,7 +14,7 @@ export const HeroInfo = () => {
 
   return (
     <div className="hero-info">
-      {!state ? (
+      {!currentHero ? (
         <p className="instruction">
           <span>Listen to the player.</span>
           <span>Select a hero from the list</span>
@@ -23,22 +23,24 @@ export const HeroInfo = () => {
         <React.Fragment>
           <div className="hero-info__top">
             <div className="hero-info__image">
-              <img src={state.image} alt="hero" />
+              <img src={currentHero.image} alt="hero" />
             </div>
             <div className="hero-info__sidebar">
-              <div className="hero-info__name">{state.name}</div>
-              <div className="hero-info__surname">{state.fullName}</div>
+              <div className="hero-info__name">{currentHero.name}</div>
+              <div className="hero-info__surname">{currentHero.fullName}</div>
               <div className="hero-info__audio">
                 <AudioPlayer
                   ref={audioRef}
-                  src={state.audio}
+                  src={currentHero.audio}
                   showJumpControls={false}
                   onCanPlay={onPause}
                 />
               </div>
             </div>
           </div>
-          <div className="hero-info__description">{state.description}</div>
+          <div className="hero-info__description">
+            {currentHero.description}
+          </div>
         </React.Fragment>
       )}
     </div>

@@ -1,17 +1,12 @@
 export const HEROES_LOADED = "HEROES_LOADED";
-export const SET_CURRENT_HERO = "SET_CURRENT_HERO";
-export const NEXT_STEP = "NEXT_STEP";
+export const HEROES_ERROR = "HEROES_ERROR";
 
 export const heroesLoaded = (heroes) => ({
   type: HEROES_LOADED,
   payload: heroes,
 });
 
-export const setCurrentHero = (hero) => ({
-  type: SET_CURRENT_HERO,
-  payload: hero,
-});
-
-export const nextStep = () => ({
-  type: NEXT_STEP,
+export const heroesError = (error) => ({
+  type: HEROES_ERROR,
+  payload: error,
 });

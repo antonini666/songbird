@@ -1,10 +1,9 @@
-import { HEROES_LOADED, SET_CURRENT_HERO } from "./actions";
-import { NEXT_STEP } from "../score/actions";
+import { HEROES_LOADED, HEROES_ERROR } from "./actions";
 
 const initialState = {
   heroes: [],
   loading: true,
-  currentHero: null,
+  error: null,
 };
 
 export const heroesReducer = (state = initialState, action) => {
@@ -15,15 +14,11 @@ export const heroesReducer = (state = initialState, action) => {
         heroes: action.payload,
         loading: false,
       };
-    case SET_CURRENT_HERO:
+    case HEROES_ERROR:
       return {
-        ...state,
-        currentHero: action.payload,
-      };
-    case NEXT_STEP:
-      return {
-        ...state,
-        currentHero: initialState.currentHero,
+        heroes: [],
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;

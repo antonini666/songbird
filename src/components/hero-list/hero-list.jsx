@@ -1,61 +1,64 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setRightAnswer } from "../../services/redux/score/actions";
-import { DotaService } from "../../services/api/dota-service";
-import { Spinner } from "../spinner";
 import {
-  heroesLoaded,
+  setRightAnswer,
+  setSelectedItems,
   setCurrentHero,
-} from "../../services/redux/heroes/actions";
-import {
-  decrementMaxPoints,
-  incrementScore,
 } from "../../services/redux/score/actions";
-import "./hero-list.scss";
 
-const dotaService = new DotaService();
+import { Spinner } from "../spinner";
+import "./hero-list.scss";
 
 export const HeroList = () => {
   const dispatch = useDispatch();
 
-  const state = useSelector(({ heroes, classes, score }) => {
+  const state = useSelector(({ heroes, score }) => {
     return {
       heroes: heroes.heroes,
       loading: heroes.loading,
-      step: classes.step,
+      error: heroes.error,
+      step: score.step,
       selectedRightAnswer: score.selectedRightAnswer,
       rightAnswer: score.rightAnswer,
+      selectedItems: score.selectedItems,
     };
   });
 
-  const onClickedAnswer = (e) => {
-    return (
-      !e.classList.contains("hero-list__item--error") &&
-      !e.classList.contains("hero-list__item--success")
-    );
+  const {
+    heroes,
+    step,
+    loading,
+    error,
+    selectedRightAnswer,
+    rightAnswer,
+    selectedItems,
+  } = state;
+
+  const heroesList = Object.values(heroes)[step];
+
+  const classes = (id) => {
+    if (selectedRightAnswer) {
+      if (rightAnswer + 1 === id) {
+        return "hero-list__item--success";
+      }
+      if (selectedItems.includes(id)) {
+        return "hero-list__item--error";
+      }
+    } else {
+      if (selectedItems.includes(id)) {
+        return "hero-list__item--error";
+      }
+    }
   };
 
-  useEffect(() => {
-    dotaService
-      .getAllHero()
-      .then((heroList) => dispatch(heroesLoaded(Object.values(heroList))));
-  }, [dispatch]);
-
-  const { heroes, step, loading, selectedRightAnswer, rightAnswer } = state;
-
-  const onHandler = (e, hero, id) => {
+  const onHeroItemClicked = (hero, id) => {
     dispatch(setCurrentHero(hero));
     if (!selectedRightAnswer) {
-      if (onClickedAnswer(e)) {
-        if (id === rightAnswer) {
-          e.classList.add("hero-list__item--success");
-          dispatch(incrementScore());
-          dispatch(setRightAnswer(true));
-        } else {
-          e.classList.add("hero-list__item--error");
-          dispatch(decrementMaxPoints());
-        }
+      if (rightAnswer + 1 === id) {
+        dispatch(setRightAnswer(true));
+      } else {
+        dispatch(setSelectedItems(id));
       }
     }
   };
@@ -68,14 +71,22 @@ export const HeroList = () => {
     );
   }
 
+  if (error) {
+    return (
+      <div className="hero-list loading">
+        <div>Something went wrong</div>
+      </div>
+    );
+  }
+
   return (
     <div className="hero-list">
       <ul className="hero-list__items">
-        {heroes[step].map((hero) => (
+        {heroesList.map((hero) => (
           <li
-            className="hero-list__item"
+            className={`hero-list__item ${classes(hero.id)}`}
             key={hero.id}
-            onClick={(e) => onHandler(e.target, hero, hero.id)}
+            onClick={onHeroItemClicked.bind(this, hero, hero.id)}
           >
             <span className="badge" />
             {hero.name}

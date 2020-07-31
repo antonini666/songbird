@@ -12,7 +12,7 @@ export const HeaderNav = ({ loading, classes, step }) => {
 
   return (
     <React.Fragment>
-      {classes.map((item, id) =>
+      {Object.keys(classes).map((item, id) =>
         step === id ? (
           <li className="header__item header__item--active" key={id}>
             {item}

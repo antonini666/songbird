@@ -12,11 +12,6 @@ class DotaService {
     return await res.json();
   };
 
-  getHeroClasses = async () => {
-    const res = await this.getResource();
-    return Object.keys(res);
-  };
-
   getAllHero = async () => {
     const res = await this.getResource();
     return res;
