@@ -8,12 +8,32 @@
     font-size: 60px;
     text-align: center;
     padding-top: 80px;
+
+    @media (max-width: 768px) {
+      font-size: 10vw;
+    }
+
+    &--win {
+      padding: 40px;
+      color: #ef4136;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #fff;
+    }
   }
 
   &__description {
     text-align: center;
     padding: 10px 0 30px;
     border-bottom: 1px solid lighten($color: #333, $amount: 5);
+
+    span {
+      font-size: 24px;
+      color: #ef4136;
+
+      @media (max-width: 768px) {
+        font-size: 5vw;
+      }
+    }
   }
 
   &__btn {

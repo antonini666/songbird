@@ -1,10 +1,9 @@
 import {
   SET_RIGHT_ANSWER,
   SET_CURRENT_HERO,
-  DECREMENT_MAX_POINTS,
-  INCREMENT_SCORE,
   NEXT_STEP,
   SET_SELECTED_ITEMS,
+  RESET_GAME,
 } from "./actions";
 
 const initialState = {
@@ -43,21 +42,11 @@ export const scoreReducer = (state = initialState, action) => {
         score: state.score,
         rightAnswer: action.payload,
       };
-    // case DECREMENT_MAX_POINTS:
-    //   return {
-    //     ...state,
-    //     maxPoints: state.maxPoints - 1,
-    //   };
-    // case INCREMENT_SCORE:
-    //   return {
-    //     ...state,
-    //     score: state.score + state.maxPoints,
-    //   };
-    // case INCREMENT_STEP:
-    //   return {
-    //     ...state,
-    //     step: state.step + 1,
-    //   };
+    case RESET_GAME:
+      return {
+        ...initialState,
+        rightAnswer: action.payload,
+      };
     default:
       return state;
   }

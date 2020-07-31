@@ -32,6 +32,8 @@ export const HeroBar = () => {
     audioRef.current.audio.current.pause();
   };
 
+  console.log(rightAnswer);
+
   if (loading) {
     return (
       <div className="hero-bar loading">

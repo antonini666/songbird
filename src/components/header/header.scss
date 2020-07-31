@@ -18,10 +18,23 @@
   }
 
   &__score {
+    display: flex;
+    align-items: center;
     font-size: 24px;
 
+    span {
+      font-size: 36px;
+      padding-left: 5px;
+      color: #ef4136;
+      font-weight: 700;
+
+      @media (max-width: 425px) {
+        font-size: 30px;
+      }
+    }
+
     @media (max-width: 425px) {
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 

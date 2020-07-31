@@ -21,7 +21,9 @@ export const Header = () => {
         <div className="header__logo">
           <img src={Logo} alt="logo" />
         </div>
-        <div className="header__score">Score: {state.score}</div>
+        <div className="header__score">
+          Score: <span>{state.score}</span>
+        </div>
       </div>
       <nav className="header__nav">
         <ul className="header__menu">
