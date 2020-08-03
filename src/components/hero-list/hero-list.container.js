@@ -6,7 +6,8 @@ import {
   setSelectedItems,
   setCurrentHero,
 } from "../../services/redux/score/actions";
-
+import Correct from "../../assets/sounds/corect.mp3";
+import Incorrect from "../../assets/sounds/incorrect.mp3";
 import { Spinner } from "../spinner";
 import { HeroList } from "./hero-list";
 
@@ -45,11 +46,14 @@ export const HeroListContainer = () => {
       if (selectedItems.includes(id)) {
         return "hero-list__item--error";
       }
-    } else {
-      if (selectedItems.includes(id)) {
-        return "hero-list__item--error";
-      }
+    } else if (selectedItems.includes(id)) {
+      return "hero-list__item--error";
     }
+  };
+
+  const onAnswersAudio = (correctAnswer) => {
+    const audio = new Audio(correctAnswer ? Correct : Incorrect);
+    audio.play();
   };
 
   const onHeroItemClicked = (hero, id) => {
@@ -57,8 +61,10 @@ export const HeroListContainer = () => {
     if (!selectedRightAnswer) {
       if (rightAnswer + 1 === id) {
         dispatch(setRightAnswer(true));
-      } else {
+        onAnswersAudio(true);
+      } else if (!selectedItems.includes(id)) {
         dispatch(setSelectedItems(id));
+        onAnswersAudio(false);
       }
     }
   };
