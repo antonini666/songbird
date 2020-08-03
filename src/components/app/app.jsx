@@ -1,23 +1,23 @@
 import React from "react";
 
-import { HeroBar } from "../hero-bar";
-import { HeroList } from "../hero-list";
-import { HeroInfo } from "../hero-info";
+import { HeroBarContainer } from "../hero-bar";
+import { HeroListContainer } from "../hero-list";
+import { HeroInfoContainer } from "../hero-info";
 import { NextButtonContainer } from "../next-button";
-import { Header } from "../header";
+import { HeaderContainer } from "../header";
 import "./app.scss";
 import { ResultContainer } from "../result";
 
 const App = ({ step }) => {
   return (
     <div className="container">
-      <Header />
+      <HeaderContainer />
       {step < 6 ? (
         <React.Fragment>
-          <HeroBar />
+          <HeroBarContainer />
           <div className="flex">
-            <HeroList />
-            <HeroInfo />
+            <HeroListContainer />
+            <HeroInfoContainer />
           </div>
           <NextButtonContainer />
         </React.Fragment>

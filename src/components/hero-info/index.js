@@ -1,1 +1,1 @@
-export { HeroInfo } from "./hero-info";
+export { HeroInfoContainer } from "./hero-info.container";

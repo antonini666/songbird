@@ -1,17 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import AudioPlayer from "react-h5-audio-player";
-import { useSelector } from "react-redux";
 
 import "./hero-info.scss";
 
-export const HeroInfo = () => {
-  const currentHero = useSelector(({ score }) => score.currentHero);
-  const audioRef = useRef(null);
-
-  const onPause = () => {
-    audioRef.current.audio.current.pause();
-  };
-
+export const HeroInfo = ({currentHero, audioRef, onPause}) => {
   return (
     <div className="hero-info">
       {!currentHero ? (

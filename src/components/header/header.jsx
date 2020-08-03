@@ -1,19 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import Logo from "../../assets/image/logo.png";
 import { HeaderNav } from "./header-nav";
 import "./header.scss";
 
-export const Header = () => {
-  const state = useSelector(({ heroes, score }) => {
-    return {
-      heroesClasses: heroes.heroes,
-      step: score.step,
-      loading: heroes.loading,
-      score: score.score,
-    };
-  });
+export const Header = ({ state }) => {
+  const { score, heroesClasses, step, loading } = state;
 
   return (
     <header className="header">
@@ -22,16 +14,12 @@ export const Header = () => {
           <img src={Logo} alt="logo" />
         </div>
         <div className="header__score">
-          Score: <span>{state.score}</span>
+          Score: <span>{score}</span>
         </div>
       </div>
       <nav className="header__nav">
         <ul className="header__menu">
-          <HeaderNav
-            classes={state.heroesClasses}
-            step={state.step}
-            loading={state.loading}
-          />
+          <HeaderNav classes={heroesClasses} step={step} loading={loading} />
         </ul>
       </nav>
     </header>

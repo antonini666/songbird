@@ -1,1 +1,1 @@
-export { HeroList } from "./hero-list";
+export { HeroListContainer } from "./hero-list.container";

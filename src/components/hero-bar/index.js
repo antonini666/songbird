@@ -1,1 +1,1 @@
-export { HeroBar } from "./hero-bar";
+export { HeroBarContainer } from "./hero-bar.container";
