@@ -54,14 +54,14 @@ export const HeroListContainer = () => {
   const onAnswersAudio = (correctAnswer) => {
     const audio = new Audio(correctAnswer ? Correct : Incorrect);
     audio.volume = 0.3;
-    const playPromise = audio.play();
+    const isPlaying =
+      audio.currentTime > 0 &&
+      !audio.paused &&
+      !audio.ended &&
+      audio.readyState > 2;
 
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {})
-        .catch((error) => {
-          console.log(error);
-        });
+    if (!isPlaying) {
+      audio.play();
     }
   };
 
