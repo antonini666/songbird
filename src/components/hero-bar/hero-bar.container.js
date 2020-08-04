@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { HeroBar } from "./hero-bar";
@@ -24,6 +24,10 @@ export const HeroBarContainer = () => {
     loading,
     selectedRightAnswer,
   } = state;
+
+  useEffect(() => {
+    console.log(rightAnswer);
+  }, [step, rightAnswer]);
 
   const onPause = () => {
     audioRef.current.audio.current.pause();

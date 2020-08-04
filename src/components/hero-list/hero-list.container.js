@@ -36,8 +36,6 @@ export const HeroListContainer = () => {
     selectedItems,
   } = state;
 
-  console.log(rightAnswer);
-
   const heroesList = Object.values(heroes)[step];
 
   const classes = (id) => {
@@ -56,7 +54,15 @@ export const HeroListContainer = () => {
   const onAnswersAudio = (correctAnswer) => {
     const audio = new Audio(correctAnswer ? Correct : Incorrect);
     audio.volume = 0.3;
-    audio.play();
+    const playPromise = audio.play();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {})
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const onHeroItemClicked = (hero, id) => {

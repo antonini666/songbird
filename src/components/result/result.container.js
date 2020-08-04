@@ -12,17 +12,11 @@ export const ResultContainer = () => {
 
   useEffect(() => {
     if (score === 30) {
-      const playAudio = () => {
-        const audio = new Audio(WinAudio);
-        audio.volume = 0.5;
-        audio.play();
-      };
-      playAudio();
-      return () => {
-        playAudio();
-      };
+      const audio = new Audio(WinAudio);
+      audio.volume = 0.5;
+      audio.play();
     }
-  }, []);
+  }, [score]);
 
   const onResetGame = () => {
     dispatch(resetGame());
