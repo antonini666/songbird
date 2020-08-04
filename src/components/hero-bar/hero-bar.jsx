@@ -5,12 +5,7 @@ import QuestionMark from "../../assets/image/question-mark.png";
 import "./hero-audio.scss";
 import "./hero-bar.scss";
 
-export const HeroBar = ({
-  selectedRightAnswer,
-  hero,
-  onPause,
-  audioRef,
-}) => {
+export const HeroBar = ({ selectedRightAnswer, hero, onPause, audioRef }) => {
   return (
     <div className="hero-bar">
       <div className="hero-bar__image">

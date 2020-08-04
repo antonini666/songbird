@@ -41,8 +41,6 @@ export const HeroBarContainer = () => {
     );
   }
 
-  const hero = Object.values(heroes)[step][rightAnswer];
-
   if (error) {
     return (
       <div className="hero-bar loading">
@@ -53,10 +51,8 @@ export const HeroBarContainer = () => {
 
   return (
     <HeroBar
-      loading={loading}
-      error={error}
       selectedRightAnswer={selectedRightAnswer}
-      hero={hero}
+      hero={Object.values(heroes)[step][rightAnswer]}
       onPause={onPause}
       audioRef={audioRef}
     />
