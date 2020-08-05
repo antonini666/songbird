@@ -1,0 +1,68 @@
+.hero-info {
+  width: 50%;
+  margin-top: 20px;
+  margin-left: 10px;
+  border-radius: 10px;
+  height: max-content;
+  padding: 15px;
+  overflow: hidden;
+  background-color: #333;
+  border: 1px solid lighten($color: #333, $amount: 5);
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
+
+  .instruction {
+    span {
+      display: block;
+      font-size: 16px;
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    max-width: 180px;
+    margin-right: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      margin-right: 0;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__sidebar {
+    flex: 1;
+    width: 100%;
+  }
+
+  &__name {
+    font-size: 20px;
+    padding: 5px 0;
+    border-bottom: 1px solid lighten($color: #333, $amount: 5);
+  }
+
+  &__surname {
+    padding: 5px 0;
+    border-bottom: 1px solid lighten($color: #333, $amount: 5);
+  }
+
+  &__description {
+    margin-top: 10px;
+    font-weight: 300;
+  }
+}
