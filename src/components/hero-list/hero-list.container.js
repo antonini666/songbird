@@ -53,16 +53,13 @@ export const HeroListContainer = () => {
 
   const onAnswersAudio = (correctAnswer) => {
     const audio = new Audio(correctAnswer ? Correct : Incorrect);
-<<<<<<< HEAD
     const playPromise = audio.play();
-=======
     audio.volume = 0.3;
     const isPlaying =
       audio.currentTime > 0 &&
       !audio.paused &&
       !audio.ended &&
       audio.readyState > 2;
->>>>>>> 77ef8810351ac9344f29504405297c8c0a3259f6
 
     if (!isPlaying) {
       audio.play();
