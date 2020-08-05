@@ -13,7 +13,6 @@ export const ResultContainer = () => {
   useEffect(() => {
     if (score === 30) {
       const audio = new Audio(WinAudio);
-      audio.volume = 0.5;
       audio.play();
     }
   }, [score]);

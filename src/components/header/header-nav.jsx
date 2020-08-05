@@ -4,7 +4,7 @@ import { Spinner } from "../spinner";
 export const HeaderNav = ({ loading, classes, step }) => {
   if (loading) {
     return (
-      <li className="header__item header__item--full">
+      <li className="header__item header__item--loading">
         <Spinner />
       </li>
     );

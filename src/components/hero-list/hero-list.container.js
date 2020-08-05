@@ -53,7 +53,6 @@ export const HeroListContainer = () => {
 
   const onAnswersAudio = (correctAnswer) => {
     const audio = new Audio(correctAnswer ? Correct : Incorrect);
-    audio.volume = 0.3;
     const playPromise = audio.play();
 
     if (playPromise !== undefined) {

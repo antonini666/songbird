@@ -72,8 +72,24 @@
       background-color: lighten($color: #ef4136, $amount: 10);
     }
 
-    &--full {
+    &--loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
+      min-height: 39px;
+
+      @media (max-width: 768px) {
+        min-height: 78px;
+      }
+
+      @media (max-width: 425px) {
+        min-height: 117px;
+      }
+
+      @media (max-width: 320px) {
+        min-height: 234px;
+      }
     }
   }
 }

@@ -5,6 +5,8 @@ import QuestionMark from "../../assets/image/question-mark.png";
 import "./hero-audio.scss";
 import "./hero-bar.scss";
 
+//onPlay redux -> onPlay
+
 export const HeroBar = ({ selectedRightAnswer, hero, onPause, audioRef }) => {
   return (
     <div className="hero-bar">
