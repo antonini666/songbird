@@ -5,6 +5,7 @@ import {
   setRightAnswer,
   setSelectedItems,
   setCurrentHero,
+  playAudio,
 } from "../../services/redux/score/actions";
 import Correct from "../../assets/sounds/corect.mp3";
 import Incorrect from "../../assets/sounds/incorrect.mp3";
@@ -20,7 +21,7 @@ export const HeroListContainer = () => {
       loading: heroes.loading,
       error: heroes.error,
       step: score.step,
-      selectedRightAnswer: score.selectedRightAnswer,
+      isCorrectAnswer: score.isCorrectAnswer,
       rightAnswer: score.rightAnswer,
       selectedItems: score.selectedItems,
     };
@@ -31,7 +32,7 @@ export const HeroListContainer = () => {
     step,
     loading,
     error,
-    selectedRightAnswer,
+    isCorrectAnswer,
     rightAnswer,
     selectedItems,
   } = state;
@@ -39,7 +40,7 @@ export const HeroListContainer = () => {
   const heroesList = Object.values(heroes)[step];
 
   const classes = (id) => {
-    if (selectedRightAnswer) {
+    if (isCorrectAnswer) {
       if (rightAnswer + 1 === id) {
         return "hero-list__item--success";
       }
@@ -66,9 +67,11 @@ export const HeroListContainer = () => {
 
   const onHeroItemClicked = (hero, id) => {
     dispatch(setCurrentHero(hero));
-    if (!selectedRightAnswer) {
+    dispatch(playAudio(true));
+    if (!isCorrectAnswer) {
       if (rightAnswer + 1 === id) {
         dispatch(setRightAnswer(true));
+        dispatch(playAudio(false));
         onAnswersAudio(true);
       } else if (!selectedItems.includes(id)) {
         dispatch(setSelectedItems(id));

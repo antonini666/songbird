@@ -4,11 +4,13 @@ import {
   NEXT_STEP,
   SET_SELECTED_ITEMS,
   RESET_GAME,
+  PLAY_AUDIO,
 } from "./actions";
 
 const initialState = {
   rightAnswer: Math.floor(Math.random() * 6),
-  selectedRightAnswer: false,
+  isCorrectAnswer: false,
+  isAudioPlay: true,
   selectedItems: [],
   currentHero: null,
   maxPoints: 5,
@@ -21,7 +23,7 @@ export const scoreReducer = (state = initialState, action) => {
     case SET_RIGHT_ANSWER:
       return {
         ...state,
-        selectedRightAnswer: action.payload,
+        isCorrectAnswer: action.payload,
         score: state.score + state.maxPoints,
       };
     case SET_SELECTED_ITEMS:
@@ -41,6 +43,11 @@ export const scoreReducer = (state = initialState, action) => {
         step: state.step + 1,
         score: state.score,
         rightAnswer: action.payload,
+      };
+    case PLAY_AUDIO:
+      return {
+        ...state,
+        isAudioPlay: action.payload,
       };
     case RESET_GAME:
       return {

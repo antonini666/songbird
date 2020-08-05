@@ -12,7 +12,8 @@ export const HeroBarContainer = () => {
     loading: heroes.loading,
     error: heroes.error,
     rightAnswer: score.rightAnswer,
-    selectedRightAnswer: score.selectedRightAnswer,
+    isCorrectAnswer: score.isCorrectAnswer,
+    isAudioPlay: score.isAudioPlay,
     step: score.step,
   }));
 
@@ -22,7 +23,8 @@ export const HeroBarContainer = () => {
     error,
     step,
     loading,
-    selectedRightAnswer,
+    isCorrectAnswer,
+    isAudioPlay,
   } = state;
 
   useEffect(() => {
@@ -51,9 +53,10 @@ export const HeroBarContainer = () => {
 
   return (
     <HeroBar
-      selectedRightAnswer={selectedRightAnswer}
+      isCorrectAnswer={isCorrectAnswer}
       hero={Object.values(heroes)[step][rightAnswer]}
       onPause={onPause}
+      isAudioPlay={isAudioPlay}
       audioRef={audioRef}
     />
   );

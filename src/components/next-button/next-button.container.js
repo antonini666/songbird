@@ -8,7 +8,7 @@ export const NextButtonContainer = () => {
   const dispatch = useDispatch();
 
   const state = useSelector(({ score }) => ({
-    disabled: score.selectedRightAnswer,
+    disabled: score.isCorrectAnswer,
   }));
 
   const onNextButtonClick = () => {

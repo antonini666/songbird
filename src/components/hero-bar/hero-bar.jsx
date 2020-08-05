@@ -7,23 +7,27 @@ import "./hero-bar.scss";
 
 //onPlay redux -> onPlay
 
-export const HeroBar = ({ selectedRightAnswer, hero, onPause, audioRef }) => {
+export const HeroBar = ({
+  isCorrectAnswer,
+  hero,
+  onPause,
+  audioRef,
+  isAudioPlay,
+}) => {
   return (
     <div className="hero-bar">
       <div className="hero-bar__image">
-        <img
-          src={!selectedRightAnswer ? QuestionMark : hero.image}
-          alt="hero"
-        />
+        <img src={!isCorrectAnswer ? QuestionMark : hero.image} alt="hero" />
       </div>
       <div className="hero-bar__container">
         <div className="hero-bar__name">
-          {selectedRightAnswer ? hero.name : "******"}
+          {isCorrectAnswer ? hero.name : "******"}
         </div>
         <div className="hero-bar__audio">
           <AudioPlayer
             src={hero.audio}
             showJumpControls={false}
+            onPlay={!isAudioPlay ? onPause() : null}
             onCanPlay={onPause}
             ref={audioRef}
           />
