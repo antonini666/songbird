@@ -28,8 +28,12 @@ export const HeroBarContainer = () => {
   } = state;
 
   useEffect(() => {
-    console.log(rightAnswer);
-  }, [step, rightAnswer]);
+    console.log(
+      Object.entries(heroes).length > 0
+        ? `Correct answer: ${Object.values(heroes)[step][rightAnswer].name}`
+        : "loading..."
+    );
+  }, [heroes, rightAnswer, step]);
 
   const onPause = () => {
     audioRef.current.audio.current.pause();
